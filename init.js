@@ -12,6 +12,7 @@ require('./lib/logger.js');
 
 var logSystem = 'master';
 global.redisClient = redis.createClient(config.redis.port, config.redis.host, {
+    auth_pass: config.redis.auth,
     retry_strategy: function (options) {
         if (options.total_retry_time > 1000 * 60 * 30) {
             // End reconnecting after a specific timeout and flush all commands
